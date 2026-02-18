@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict XGRsloxT1CEgaYkxpApmUE6vgU1J2yRrqmatJ4sVBW0EgxYwDZKHVcFGgj3E4qT
+\restrict l5q4noFPkXiwN9YHL5IWTxoT110MBs6nBfbJUqDm0zvXhK1mKNL9sRKSfnOEauP
 
 -- Dumped from database version 18.2 (Debian 18.2-1.pgdg13+1)
 -- Dumped by pg_dump version 18.2 (Debian 18.2-1.pgdg13+1)
@@ -181,6 +181,28 @@ ALTER SEQUENCE public.inscripciones_id_inscripcion_seq OWNER TO antonio;
 
 ALTER SEQUENCE public.inscripciones_id_inscripcion_seq OWNED BY public.inscripciones.id_inscripcion;
 
+
+--
+-- Name: total; Type: VIEW; Schema: public; Owner: antonio
+--
+
+CREATE VIEW public.total AS
+ SELECT i.id_inscripcion,
+    i.fecha_inscripcion,
+    i.calificacion_final,
+    e.id_estudiante,
+    e.nombre_completo AS nombre_estudiante,
+    c.id_curso,
+    c.nombre AS nombre_curso,
+    d.id_docente,
+    d.nombre_completo AS nombre_docente
+   FROM (((public.inscripciones i
+     JOIN public.estudiantes e ON ((e.id_estudiante = i.id_estudiante)))
+     JOIN public.cursos c ON ((c.id_curso = i.id_curso)))
+     JOIN public.docentes d ON ((d.id_docente = c.id_docente)));
+
+
+ALTER VIEW public.total OWNER TO antonio;
 
 --
 -- Name: vista_docentes_cursos; Type: VIEW; Schema: public; Owner: antonio
@@ -486,5 +508,5 @@ ALTER TABLE ONLY public.inscripciones
 -- PostgreSQL database dump complete
 --
 
-\unrestrict XGRsloxT1CEgaYkxpApmUE6vgU1J2yRrqmatJ4sVBW0EgxYwDZKHVcFGgj3E4qT
+\unrestrict l5q4noFPkXiwN9YHL5IWTxoT110MBs6nBfbJUqDm0zvXhK1mKNL9sRKSfnOEauP
 
