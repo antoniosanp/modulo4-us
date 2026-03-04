@@ -1,13 +1,14 @@
 {
   "name": "semana3",
   "version": "1.0.0",
-  "description": "",
+  "description": "Gestión de contenido y usuarios en MongoDB - StreamHub",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "seed": "node src/seed/seedData.js"
   },
-  "keywords": [],
+  "keywords": ["mongodb", "express", "streaming"],
   "author": "",
   "license": "ISC",
   "type": "module",
