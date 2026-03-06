@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: semana2_postgres
+    ports:
+      - "5430:5432"
+    environment:
+      POSTGRES_USER: antonio
+      POSTGRES_PASSWORD: "123456"
+      POSTGRES_DB: semana2
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U antonio -d semana2"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
+
